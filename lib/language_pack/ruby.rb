@@ -577,7 +577,8 @@ params = CGI.parse(uri.query || "")
 
   def generate_jekyll_site
     puts "Building jekyll site"
-    error_message = pipe("env PATH=$PATH bundle exec jekyll --no-server 2>&1")
+    pipe("env PATH=$PATH bundle exec jekyll --no-server 2>&1")
+    pipe("env PATH=$PATH ls -R _site/")
     unless $? == 0
       error("Failed to generate site with jekyll. " + error_message)
     end
